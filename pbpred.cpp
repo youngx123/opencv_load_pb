@@ -10,7 +10,7 @@ using namespace cv::dnn;
 
 cv::Mat convertTo3Channels(const cv::Mat& binImg)
 {
-   cv:: Mat single_channel, grayMat;
+	cv:: Mat single_channel, grayMat;
     cv::cvtColor(binImg, grayMat,cv::COLOR_RGB2GRAY);
 	vector<cv::Mat> channels;
     for (int i=0;i<1;i++)
@@ -18,7 +18,7 @@ cv::Mat convertTo3Channels(const cv::Mat& binImg)
         channels.push_back(grayMat);
     }
     cv::merge(channels,single_channel);
-	printf("row : %d, col : %d, channles : %d \n", single_channel.rows, single_channel.cols, single_channel.channels());
+	// printf("row : %d, col : %d, channles : %d \n", single_channel.rows, single_channel.cols, single_channel.channels());
     return single_channel;
 }
 
@@ -45,6 +45,7 @@ void Funct(string image_file)
 	// for (int i = 0; i < layer_names.size(); i++) {
 	// 	int id = MNIST_Net.getLayerId(layer_names[i]);
 	// 	auto layer = MNIST_Net.getLayer(id);
+	
 	// 	printf("layer id : %d, \t\ttype : %s, \t\tname : %s \n", id, layer->type.c_str(), layer->name.c_str());
     //     // cout<<" layer id :  "<< id<<'\t'<< "  type :"<<layer->type.c_str()
     //     // <<'\t'<< " name: "<<layer->name.c_str()<<endl;
@@ -69,14 +70,14 @@ void Funct(string image_file)
 // 使用类 加载一次模型， 多次进行调用
 class pbModel
 {
-	public:
-		pbModel(string pbfile,string oNode);
-		void run(string fileName);
-		cv::Mat imageProcess(const cv::Mat& binImg);
-	private:
-		string m_pbPath;
-		string m_outNode;
-		Net PBNet;
+public:
+	pbModel(string pbfile,string oNode);
+	void run(string fileName);
+	cv::Mat imageProcess(const cv::Mat& binImg);
+private:
+	string m_pbPath;
+	string m_outNode;
+	Net PBNet;
 };
 
 pbModel::pbModel(string pbfile,string oNode)
@@ -146,9 +147,9 @@ void fileGlob(string dir, vector<string> &nameLists, string item=".png")
             }
         }while(_findnext(hfile, &fileinfo)== 0);
         _findclose(hfile);
-    }
-	
+    }	
 }
+
 int main()
 {
 	string testDir = "D:/MyNAS/SynologyDrive/CPP/pb_cpp/test_images";
@@ -161,7 +162,7 @@ int main()
 	pbModel pbRun(pbfile, outNode);
 	for(int i=0;i<nameLists.size();i++)
 	{
-			pbRun.run(nameLists[i]);
+		pbRun.run(nameLists[i]);
 	}
 	string image_file = "D:/MyNAS/SynologyDrive/CPP/pb_cpp/test_images/48.png";
 	// printf("%s", image_file.c_str());

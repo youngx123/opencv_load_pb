@@ -37,7 +37,7 @@ void argMax(const cv::Mat& res, float &score, int &index)
 void Funct(string image_file)
 {
 	Net MNIST_Net  =  readNetFromTensorflow("mnist_model_1channel.pb");
-        string outNode = "output_class_1/Softmax";
+    string outNode = "output_class_1/Softmax";
 	string inputNode ="input_image_1/Conv2D";
 	
 	// get layername 
@@ -57,7 +57,7 @@ void Funct(string image_file)
 
 	image2 = blobFromImage(image2,1.0, cv::Size(224,224), cv::Scalar(0,0,0));
 	MNIST_Net.setInput(image2);
-        cv::Mat outs;
+    cv::Mat outs;
 	MNIST_Net.forward(outs,outNode);
 
 	float score=-1;

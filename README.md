@@ -4,6 +4,8 @@ python `cpp_test.py` 包含模型构建，训练、转为pb、以及对pb进行�
 
 `cv_test.py` 使用Python的opencv 库调用dnn测试pb 模型
 
+`pbpred.cpp` 使用c++ opencv  中dnn 模块对pb 进行调用和测试
+
 |    文件名     |   类别   |      概率    |
 |---------------|--------|----------------|
 |file : 1.png   | cat : 7 | score : 1.00  |
